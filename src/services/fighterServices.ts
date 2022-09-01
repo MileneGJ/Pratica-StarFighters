@@ -1,12 +1,12 @@
 import { Octokit } from "octokit";
-import * as fighterRepository from '../repositories/fighterRepository'
+import * as fighterRepository from '../repositories/fighterRepository.js'
 
 export async function getStarCount (user1:string,user2:string) {
     const octokit = new Octokit({ });
     const reposUser1 = await octokit.request(`GET /users/${user1}/repos`, {});
     const reposUser2 = await octokit.request(`GET /users/${user2}/repos`, {});
-    if(!reposUser1.data||!reposUser2.data){
-        throw {code:'NotGitHubUser',message:'User is not a GitHub user'}
+    if(reposUser1.data.message||reposUser2.data.message){
+        throw {code:'NotGitHubUser',message:'Could not find GitHub users'}
     }
     let countStar1 = 0
     reposUser1.data.map((x:any)=>countStar1+=x.stargazers_count)
@@ -95,5 +95,5 @@ export async function getStarCount (user1:string,user2:string) {
 
 export async function getRanking () {
     const result = await fighterRepository.getAllFighters()
-    return {fighters:result}
+    return {fighters:result.rows}
 }

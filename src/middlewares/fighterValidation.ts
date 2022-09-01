@@ -1,4 +1,4 @@
-import fighterSchema from "../schemas/fighterSchema";
+import fighterSchema from "../schemas/fighterSchema.js";
 import { Request, Response,NextFunction } from "express";
 
 export default function fighterValidation (req:Request,res:Response,next:NextFunction){

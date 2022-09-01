@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as fighterController from '../controllers/fighterControllers'
+import * as fighterController from '../controllers/fighterControllers.js'
 
 const router = Router()
 

@@ -1,8 +1,8 @@
-import connection from "../database/database";
+import connection from "../database/database.js";
 
 export async function insertVictory(user: string, win: number,loss: number,draw: number) {
     return await connection.query(
-        'INSERT INTO fighters (username,wins,losses,draws) VALUES $1,$2,$3,$4',
+        'INSERT INTO fighters (username,wins,losses,draws) VALUES ($1,$2,$3,$4)',
         [user,win,loss,draw])
 }
 export async function updateVictory(user: string, win: number,loss: number,draw: number) {
@@ -19,6 +19,6 @@ return await connection.query(
 
 export async function getAllFighters(){
     return await connection.query(
-        'SELECT FROM fighters ORDER BY wins,draws'
+        'SELECT * FROM fighters ORDER BY wins DESC,draws DESC'
     )
 }
